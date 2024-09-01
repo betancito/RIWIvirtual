@@ -34,5 +34,5 @@ public class student {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Class assignedClass;
+    private riwiClass assignedClass;
 }
