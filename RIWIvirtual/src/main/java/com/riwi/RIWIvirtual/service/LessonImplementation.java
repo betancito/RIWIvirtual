@@ -1,32 +1,30 @@
 package com.riwi.RIWIvirtual.service;
 
-import com.riwi.RIWIvirtual.dtos.lessons.ErrorResponse;
 import com.riwi.RIWIvirtual.dtos.lessons.LessonResponse;
-import com.riwi.RIWIvirtual.entity.riwiLesson;
+import com.riwi.RIWIvirtual.entity.RiwiLesson;
 import com.riwi.RIWIvirtual.repository.iLesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class lessonImplementation implements lessonService {
+public class LessonImplementation implements LessonService {
     @Autowired
     iLesson lessonRepository;
 
     @Override
-    public riwiLesson createLesson(riwiLesson lesson) {
+    public RiwiLesson createLesson(RiwiLesson lesson) {
         return lessonRepository.save(lesson);
     }
 
     @Override
-    public riwiLesson disableLesson(Long id) throws Exception{
-        Optional<riwiLesson> lessonOptional = lessonRepository.findById(id);
+    public RiwiLesson disableLesson(Long id) throws Exception{
+        Optional<RiwiLesson> lessonOptional = lessonRepository.findById(id);
         if (lessonOptional.isPresent()){
-            riwiLesson lesson = lessonOptional.get();
+            RiwiLesson lesson = lessonOptional.get();
             lesson.setStatus(false); // disable the course by setting status to false
             lesson.setMultimediaContent(null); //delete multimedia content
             return lessonRepository.save(lesson);
@@ -37,9 +35,9 @@ public class lessonImplementation implements lessonService {
 
     @Override
     public ResponseEntity<LessonResponse> getLessonWithMultimedia(Long id){
-        Optional<riwiLesson> lessonOptional = lessonRepository.findById(id);
+        Optional<RiwiLesson> lessonOptional = lessonRepository.findById(id);
         if (lessonOptional.isPresent()){
-            riwiLesson lesson = lessonOptional.get();
+            RiwiLesson lesson = lessonOptional.get();
             LessonResponse lessonResponse = new LessonResponse(
                     lesson.getTitle(),
                     lesson.getDescription(),

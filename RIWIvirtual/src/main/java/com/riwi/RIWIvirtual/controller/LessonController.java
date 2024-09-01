@@ -1,27 +1,26 @@
 package com.riwi.RIWIvirtual.controller;
 
 import com.riwi.RIWIvirtual.dtos.lessons.LessonResponse;
-import com.riwi.RIWIvirtual.entity.riwiLesson;
+import com.riwi.RIWIvirtual.entity.RiwiLesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import com.riwi.RIWIvirtual.service.lessonService;
+import com.riwi.RIWIvirtual.service.LessonService;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/lessons")
-public class lessonController {
+@RestController
+@RequestMapping("/api/v1/lessons")
+public class LessonController {
     @Autowired
-    private lessonService lessonService;
+    private LessonService lessonService;
 
     @PostMapping("/create")
-    public ResponseEntity<riwiLesson> createLesson(@RequestBody riwiLesson lesson){
-        riwiLesson savedLesson = lessonService.createLesson(lesson);
+    public ResponseEntity<RiwiLesson> createLesson(@RequestBody RiwiLesson lesson){
+        RiwiLesson savedLesson = lessonService.createLesson(lesson);
         return new ResponseEntity<>(savedLesson, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/disable/{id}")
+    @PatchMapping("/{id}/disable")
     public ResponseEntity<String> disableLesson(@PathVariable Long id){
         try{
             lessonService.disableLesson(id);
@@ -31,7 +30,7 @@ public class lessonController {
         }
     }
 
-    @GetMapping("/multimedia/{id}")
+    @GetMapping("/{id}/multimedia")
     public  ResponseEntity<LessonResponse> getLessonWithMultimedia(@PathVariable Long id){
            return lessonService.getLessonWithMultimedia(id);
     }

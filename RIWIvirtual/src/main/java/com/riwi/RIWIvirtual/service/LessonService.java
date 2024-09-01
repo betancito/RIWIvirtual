@@ -1,13 +1,13 @@
 package com.riwi.RIWIvirtual.service;
 
 import com.riwi.RIWIvirtual.dtos.lessons.LessonResponse;
-import com.riwi.RIWIvirtual.entity.riwiLesson;
+import com.riwi.RIWIvirtual.entity.RiwiLesson;
 import org.springframework.http.ResponseEntity;
 
-public interface lessonService  {
-    public riwiLesson createLesson(riwiLesson lesson);
+public interface LessonService {
+    public RiwiLesson createLesson(RiwiLesson lesson);
 
-    public riwiLesson disableLesson(Long id) throws Exception;
+    public RiwiLesson disableLesson(Long id) throws Exception;
 
     public ResponseEntity<LessonResponse> getLessonWithMultimedia (Long id);
 }
