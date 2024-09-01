@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
+
 @Getter
 @Setter
 @Builder
@@ -25,15 +25,13 @@ public class riwiLesson {
     private String description;
 
     @Column(nullable = false)
-    private boolean active;
+    private boolean status;
 
     @ElementCollection
     private List<String> multimediaContent;
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Class relatedClass;
+private RiwiClass assignedClass;
 
-    @OneToMany(mappedBy = "assignedClass")
-    private List<Student> students;
 }
