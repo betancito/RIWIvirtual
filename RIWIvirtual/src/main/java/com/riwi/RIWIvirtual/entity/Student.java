@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "students")
-public class student {
+public class Student {  // Nombre de la clase en mayúscula
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,5 +34,10 @@ public class student {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Class assignedClass;
+    private RiwiClass assignedClass;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
