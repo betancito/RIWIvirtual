@@ -4,4 +4,6 @@ import com.riwi.RIWIvirtual.entity.riwiLesson;
 
 public interface lessonService  {
     public riwiLesson createLesson(riwiLesson lesson);
+
+    public riwiLesson disableLesson(Long id) throws Exception;
 }

@@ -25,7 +25,7 @@ public class riwiLesson {
     private String description;
 
     @Column(nullable = false)
-    private boolean Stattus;
+    private boolean status;
 
     @ElementCollection
     private List<String> multimediaContent;
