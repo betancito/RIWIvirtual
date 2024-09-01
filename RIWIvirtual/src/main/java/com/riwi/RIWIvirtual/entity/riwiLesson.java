@@ -35,5 +35,5 @@ public class riwiLesson {
     private Class relatedClass;
 
     @OneToMany(mappedBy = "assignedClass")
-    private List<student> students;
+    private List<Student> students;
 }
