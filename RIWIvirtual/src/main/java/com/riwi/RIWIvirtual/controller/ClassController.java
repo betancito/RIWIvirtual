@@ -24,9 +24,15 @@ public class ClassController {
         return ResponseEntity.ok(classService.getAllClasses(name, description, page, size));
     }
 
-    // Endpoint para obtener una clase por ID
     @GetMapping("/{id}")
     public ResponseEntity<ClassDTO> getClassById(@PathVariable Long id) {
         return ResponseEntity.ok(classService.getClassById(id));
     }
+
+    // Endpoint para agregar una nueva clase
+    @PostMapping
+    public ResponseEntity<ClassDTO> createClass(@RequestBody ClassDTO classDTO) {
+        return ResponseEntity.ok(classService.createClass(classDTO));
+    }
 }
+

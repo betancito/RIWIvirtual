@@ -36,6 +36,16 @@ public class ClassService {
         return convertToDTO(riwiClass);
     }
 
+    public ClassDTO createClass(ClassDTO classDTO) {
+        riwiClass newClass = new riwiClass();
+        newClass.setName(classDTO.getName());
+        newClass.setDescription(classDTO.getDescription());
+        newClass.setActive(classDTO.getActive());
+
+        riwiClass savedClass = classRepository.save(newClass);
+        return convertToDTO(savedClass);
+    }
+
     private ClassDTO convertToDTO(riwiClass riwiClass) {
         ClassDTO classDTO = new ClassDTO();
         classDTO.setId(riwiClass.getId());
