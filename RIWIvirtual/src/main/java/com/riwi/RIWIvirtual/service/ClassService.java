@@ -30,6 +30,12 @@ public class ClassService {
                 .collect(Collectors.toList());
     }
 
+    public ClassDTO getClassById(Long id) {
+        riwiClass riwiClass = classRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Clase no encontrada con el ID: " + id));
+        return convertToDTO(riwiClass);
+    }
+
     private ClassDTO convertToDTO(riwiClass riwiClass) {
         ClassDTO classDTO = new ClassDTO();
         classDTO.setId(riwiClass.getId());
