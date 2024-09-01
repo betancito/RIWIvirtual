@@ -1,6 +1,5 @@
 package com.riwi.RIWIvirtual.service;
 
-import com.riwi.RIWIvirtual.dtos.StudentClassDTO;
 import com.riwi.RIWIvirtual.dtos.StudentDTO;
 import com.riwi.RIWIvirtual.entity.RiwiClass;
 import com.riwi.RIWIvirtual.entity.Student;
@@ -19,54 +18,61 @@ public class StudentService {
     private IRiwiClassRepository riwiClassRepository;
 
     public Student createStudent(Student student, Long classId) {
-        // Validar que el email sea único
         if (studentRepository.findByEmail(student.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email already in use");
         }
 
-        // Validar que la clase exista
         RiwiClass assignedClass = riwiClassRepository.findById(classId)
                 .orElseThrow(() -> new IllegalArgumentException("Class does not exist"));
 
-        // Asignar la clase al estudiante
         student.setAssignedClass(assignedClass);
 
-        // Guardar el estudiante en la base de datos
         return studentRepository.save(student);
-
     }
 
-    // Método para deshabilitar un estudiante
-    public StudentDTO disableStudent(Long studentId) {
-        Student student = studentRepository.findById(studentId)
-                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
-        student.setActive(false);
-        student = studentRepository.save(student);
+    public StudentDTO disableStudent(Long id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found with id " + id));
 
-        // Convertir Student a StudentDTO
-        StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setId(student.getId());
-        studentDTO.setName(student.getName());
-        studentDTO.setEmail(student.getEmail());
-        studentDTO.setActive(student.isActive());
-        studentDTO.setCreatedAt(student.getCreatedAt());
-        studentDTO.setAssignedClassId(student.getAssignedClass() != null ? student.getAssignedClass().getId() : null);
+        student.setActive(false);  // Deshabilitar el estudiante
+        studentRepository.save(student);
 
-        return studentDTO;
+        return new StudentDTO(student.getId(), student.getName(), student.getEmail(), student.isActive(), student.getAssignedClass().getId());
     }
 
-    public StudentClassDTO getStudentById(Long studentId) {
-        Student student = studentRepository.findById(studentId)
+    public Student updateStudent(Long studentId, Student updatedStudent) {
+        Student existingStudent = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("Student not found"));
 
-        // Crear el DTO con la información del estudiante y la clase
-        return new StudentClassDTO(
-                student.getId(),
-                student.getName(),
-                student.getEmail(),
-                student.isActive(),
-                student.getCreatedAt(),
-                student.getAssignedClass()
-        );
+        // Validar email
+        if (updatedStudent.getEmail() == null || updatedStudent.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
+
+        if (!updatedStudent.getEmail().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new IllegalArgumentException("Email should be valid");
+        }
+
+        if (studentRepository.findByEmail(updatedStudent.getEmail())
+                .filter(student -> !student.getId().equals(studentId))
+                .isPresent()) {
+            throw new IllegalArgumentException("Email already in use");
+        }
+
+        // Validar clase
+        if (updatedStudent.getAssignedClass() != null) {
+            RiwiClass assignedClass = riwiClassRepository.findById(updatedStudent.getAssignedClass().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Class does not exist"));
+            updatedStudent.setAssignedClass(assignedClass);
+        }
+
+        // Actualizar campos
+        existingStudent.setName(updatedStudent.getName());
+        existingStudent.setEmail(updatedStudent.getEmail());
+        existingStudent.setPassword(updatedStudent.getPassword());
+        existingStudent.setActive(updatedStudent.isActive());
+        existingStudent.setAssignedClass(updatedStudent.getAssignedClass());
+
+        return studentRepository.save(existingStudent);
     }
 }
