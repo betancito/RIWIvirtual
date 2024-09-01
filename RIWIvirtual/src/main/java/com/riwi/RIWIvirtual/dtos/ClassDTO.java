@@ -1,4 +1,4 @@
-package com.riwi.RIWIvirtual.dto;
+package com.riwi.RIWIvirtual.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

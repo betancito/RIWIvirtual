@@ -1,6 +1,6 @@
 package com.riwi.RIWIvirtual.controller;
 
-import com.riwi.RIWIvirtual.dto.ClassDTO;
+import com.riwi.RIWIvirtual.dtos.ClassDTO;
 import com.riwi.RIWIvirtual.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
