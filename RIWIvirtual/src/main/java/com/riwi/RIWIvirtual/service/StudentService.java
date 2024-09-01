@@ -1,5 +1,6 @@
 package com.riwi.RIWIvirtual.service;
 
+import com.riwi.RIWIvirtual.dtos.StudentClassDTO;
 import com.riwi.RIWIvirtual.dtos.StudentDTO;
 import com.riwi.RIWIvirtual.entity.RiwiClass;
 import com.riwi.RIWIvirtual.entity.Student;
@@ -52,5 +53,20 @@ public class StudentService {
         studentDTO.setAssignedClassId(student.getAssignedClass() != null ? student.getAssignedClass().getId() : null);
 
         return studentDTO;
+    }
+
+    public StudentClassDTO getStudentById(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
+
+        // Crear el DTO con la información del estudiante y la clase
+        return new StudentClassDTO(
+                student.getId(),
+                student.getName(),
+                student.getEmail(),
+                student.isActive(),
+                student.getCreatedAt(),
+                student.getAssignedClass()
+        );
     }
 }

@@ -11,5 +11,5 @@ public class StudentDTO {
     private String email;
     private boolean active;
     private LocalDateTime createdAt;
-    private Long assignedClassId; // ID de la clase asignada
+    private Long assignedClassId;
 }
