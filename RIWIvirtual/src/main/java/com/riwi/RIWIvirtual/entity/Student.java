@@ -34,7 +34,7 @@ public class Student {  // Nombre de la clase en mayúscula
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private riwi assignedClass;
+    private RiwiClass assignedClass;
 
     @PrePersist
     protected void onCreate() {

@@ -32,5 +32,6 @@ public class riwiLesson {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private RiwiClass assignedClass;
+private RiwiClass assignedClass;
+
 }
