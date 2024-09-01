@@ -1,4 +1,4 @@
-package com.riwi.RIWIvirtual.dtos;
+package com.riwi.RIWIvirtual.dtos.student;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
