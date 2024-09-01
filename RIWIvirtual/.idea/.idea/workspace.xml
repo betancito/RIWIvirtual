@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f12ee7f-2a6a-4bc9-8142-39899b117b79" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/RIWIvirtual.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RIWIvirtual.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RIWIvirtual/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RIWIvirtual/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,32 +19,59 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Jorgereyesdev"
-  }
+  "lastFilter": {}
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/betancito/RIWIvirtual.git",
-    "accountId": "14aa4007-403d-4d8f-9fe5-5485cca9b268"
+    "url": "https://github.com/betancito/RIWIvirtual",
+    "accountId": "292d8989-1814-46aa-90d4-f88cdf6f4147"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2lSAwr8gPQcxi53EXoQFsIbwh3Y" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.RiwIvirtualWorkshopApplication.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Documents/IntelliJ/RIWIvirtual/RIWIvirtual"
+    "last_opened_file_path": "C:/Users/rando/OneDrive/Escritorio/SpringBoot/RIWItask",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="RiwIvirtualWorkshopApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.riwi.RIWIvirtual.RiwIvirtualWorkshopApplication" />
+      <module name="RIWIvirtual" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.riwi.RIWIvirtual.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RiwIvirtualWorkshopApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
