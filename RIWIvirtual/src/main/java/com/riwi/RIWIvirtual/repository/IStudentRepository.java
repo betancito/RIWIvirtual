@@ -1,4 +1,4 @@
-package com.riwi.RIWIvirtual.repositories;
+package com.riwi.RIWIvirtual.repository;
 
 import com.riwi.RIWIvirtual.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
