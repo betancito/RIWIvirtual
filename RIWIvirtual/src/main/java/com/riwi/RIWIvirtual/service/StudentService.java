@@ -1,5 +1,6 @@
 package com.riwi.RIWIvirtual.service;
 
+import com.riwi.RIWIvirtual.dtos.student.StudentClassDTO;
 import com.riwi.RIWIvirtual.dtos.student.StudentDTO;
 import com.riwi.RIWIvirtual.entity.RiwiClass;
 import com.riwi.RIWIvirtual.entity.Student;
@@ -43,6 +44,20 @@ public class StudentService {
         studentRepository.save(student);
 
         return new StudentDTO(student.getId(), student.getName(), student.getEmail(), student.isActive(), student.getAssignedClass().getId());
+    }
+
+    public StudentClassDTO findById(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found with id " + studentId));
+
+        return new StudentClassDTO(
+                student.getId(),
+                student.getName(),
+                student.getEmail(),
+                student.isActive(),
+                student.getCreatedAt(),
+                student.getAssignedClass()
+        );
     }
 
     public Student updateStudent(Long studentId, Student updatedStudent) {

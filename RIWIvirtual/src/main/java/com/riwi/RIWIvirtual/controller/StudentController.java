@@ -1,5 +1,6 @@
 package com.riwi.RIWIvirtual.controller;
 
+import com.riwi.RIWIvirtual.dtos.student.StudentClassDTO;
 import com.riwi.RIWIvirtual.dtos.student.StudentDTO;
 import com.riwi.RIWIvirtual.entity.Student;
 
@@ -33,6 +34,16 @@ public class StudentController {
         try {
             StudentDTO disabledStudent = studentService.disableStudent(id);
             return new ResponseEntity<>(disabledStudent, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getStudentById(@PathVariable Long id) {
+        try {
+            StudentClassDTO studentClassDTO = studentService.findById(id);
+            return new ResponseEntity<>(studentClassDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
