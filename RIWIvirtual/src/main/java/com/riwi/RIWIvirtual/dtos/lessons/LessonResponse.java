@@ -1,6 +1,6 @@
 package com.riwi.RIWIvirtual.dtos.lessons;
 
-import com.riwi.RIWIvirtual.entity.riwiClass;
+import com.riwi.RIWIvirtual.entity.RiwiClass;
 import lombok.*;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
         private String title;
         private String description;
         private boolean status;
-        private riwiClass assignedClass;
+        private RiwiClass assignedClass;
         private List<String> multimediaContent;
 
     }
