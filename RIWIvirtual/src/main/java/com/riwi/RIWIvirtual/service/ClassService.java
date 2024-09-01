@@ -1,7 +1,7 @@
 package com.riwi.RIWIvirtual.service;
 
 import com.riwi.RIWIvirtual.dtos.ClassDTO;
-import com.riwi.RIWIvirtual.entity.riwiClass;
+import com.riwi.RIWIvirtual.entity.RiwiClass;
 import com.riwi.RIWIvirtual.repository.IClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,7 @@ public class ClassService {
 
     public List<ClassDTO> getAllClasses(String name, String description, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<riwiClass> classPage = classRepository.findAll(pageable);
+        Page<RiwiClass> classPage = classRepository.findAll(pageable);
 
         return classPage.stream()
                 .filter(riwiClass -> (name == null || riwiClass.getName().contains(name)) &&
@@ -31,22 +31,22 @@ public class ClassService {
     }
 
     public ClassDTO getClassById(Long id) {
-        riwiClass riwiClass = classRepository.findById(id)
+        RiwiClass riwiClass = classRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Clase no encontrada con el ID: " + id));
         return convertToDTO(riwiClass);
     }
 
     public ClassDTO createClass(ClassDTO classDTO) {
-        riwiClass newClass = new riwiClass();
+        RiwiClass newClass = new RiwiClass();
         newClass.setName(classDTO.getName());
         newClass.setDescription(classDTO.getDescription());
         newClass.setActive(classDTO.getActive());
 
-        riwiClass savedClass = classRepository.save(newClass);
+        RiwiClass savedClass = classRepository.save(newClass);
         return convertToDTO(savedClass);
     }
 
-    private ClassDTO convertToDTO(riwiClass riwiClass) {
+    private ClassDTO convertToDTO(RiwiClass riwiClass) {
         ClassDTO classDTO = new ClassDTO();
         classDTO.setId(riwiClass.getId());
         classDTO.setName(riwiClass.getName());
