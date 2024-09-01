@@ -1,4 +1,4 @@
 package com.riwi.RIWIvirtual.service;
 
-public interface lessonService   {
+public interface lessonService  {
 }
