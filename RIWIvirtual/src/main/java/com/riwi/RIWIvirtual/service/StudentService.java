@@ -1,12 +1,17 @@
 package com.riwi.RIWIvirtual.service;
 
-import com.riwi.RIWIvirtual.dtos.StudentDTO;
+import com.riwi.RIWIvirtual.dtos.student.StudentDTO;
 import com.riwi.RIWIvirtual.entity.RiwiClass;
 import com.riwi.RIWIvirtual.entity.Student;
 import com.riwi.RIWIvirtual.repository.IRiwiClassRepository;
 import com.riwi.RIWIvirtual.repository.IStudentRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import org.springframework.data.domain.Pageable;
+
 
 @Service
 public class StudentService {
@@ -74,5 +79,17 @@ public class StudentService {
         existingStudent.setAssignedClass(updatedStudent.getAssignedClass());
 
         return studentRepository.save(existingStudent);
+    }
+
+    public Page<Student> getActiveStudents(String name, String email, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        if (name != null && !name.isEmpty()) {
+            return studentRepository.findByNameIgnoreCaseAndActiveTrue(name, pageable);
+        } else if (email != null && !email.isEmpty()) {
+            return studentRepository.findByEmailIgnoreCaseAndActiveTrue(email, pageable);
+        } else {
+            return studentRepository.findByActiveTrue(pageable);
+        }
     }
 }

@@ -1,10 +1,11 @@
 package com.riwi.RIWIvirtual.controller;
 
-import com.riwi.RIWIvirtual.dtos.StudentDTO;
+import com.riwi.RIWIvirtual.dtos.student.StudentDTO;
 import com.riwi.RIWIvirtual.entity.Student;
 
 import com.riwi.RIWIvirtual.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,16 @@ public class StudentController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<Page<Student>> getStudents(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
+
+        Page<Student> students = studentService.getActiveStudents(name, email, page, size);
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 }
