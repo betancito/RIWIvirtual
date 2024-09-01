@@ -1,5 +1,6 @@
 package com.riwi.RIWIvirtual.controller;
 
+import com.riwi.RIWIvirtual.dtos.lessons.LessonResponse;
 import com.riwi.RIWIvirtual.entity.riwiLesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,5 +29,10 @@ public class lessonController {
         } catch (Exception error){
             return  ResponseEntity.status(404).body("Lesson couldn't be found");
         }
+    }
+
+    @GetMapping("/multimedia/{id}")
+    public  ResponseEntity<LessonResponse> getLessonWithMultimedia(@PathVariable Long id){
+           return lessonService.getLessonWithMultimedia(id);
     }
 }
